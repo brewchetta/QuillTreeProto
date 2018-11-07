@@ -1,0 +1,11 @@
+<h1 style="border-top: solid black 4px; border-bottom: solid black 2px; display:inline-block;"><%= @user.name %></h1>
+
+<p style="font-size: 0.7em; margin-top: 0"><%= link_to "Edit", edit_user_path %></p>
+
+<p style="padding: 4px; border: solid black 2px; display: inline-block"><%= @user.bio %></p><br>
+
+<p style="border-top: solid black 2px; border-bottom: solid black 1px; display:inline-block;">Stories</p><br>
+
+<% @user.stories.each do |s| %>
+<p style="display: inline-block"> <%= link_to s.title, s %> </p>
+<% end %>

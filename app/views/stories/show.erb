@@ -1,0 +1,11 @@
+<h2><%= @story.title %></h2>
+
+<p>by <%= link_to @story.user.name, @story.user %></p>
+
+<p><%= @story.synopsis %></p>
+
+<p>TODO -- Add pages</p>
+
+<p style="font-size: 0.7em"><%= link_to "Edit", edit_story_path %></p>
+
+<p style="display: inline-block; border: solid red 2px; padding: 5px;"><%= link_to "Delete", @story, method: :delete, data: { confirm: "Do you really want to burn this book?" } %></p><br>
