@@ -14,7 +14,64 @@
  *= require_self
  */
 
+ body {
+   background-color: black;
+ }
+
 .undline {
   display: inline-block;
   border-bottom: solid black 3px;
+}
+
+.pg-hd {
+  color: white;
+  background-color: rgba(0,0,0,0.9);
+  border-top: solid white 4px;
+  border-bottom: solid white 2px;
+}
+
+.in-box {
+  color:white;
+  background-color: rgba(0,0,0,0.9);
+  border: solid black 5px;
+  border-radius: 7px;
+  display: inline-block;
+  width: 30%;
+  margin: 10px;
+}
+
+.in-box:hover {
+
+}
+
+.lg-txt-field {
+  width: 50%;
+  height: 20em
+}
+
+.url-field {
+  width: 30em;
+}
+
+.link-to {
+  text-decoration: none;
+  color: #f2aeef;
+  cursor: pointer;
+}
+
+.link-to:hover {
+  color:purple;
+}
+
+.main {
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 98%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  background-attachment: fixed;
+  min-height: 800px;
 }

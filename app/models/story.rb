@@ -1,9 +1,12 @@
 class Story < ActiveRecord::Base
-  has_many :pages
+  has_many :pages, dependent: :destroy
   belongs_to :user
+
   validates :title, presence: true
   validates :title, uniqueness: true
   validate :max_synopsis_size
+
+  private
 
   def max_synopsis_size
     if synopsis.length > 300

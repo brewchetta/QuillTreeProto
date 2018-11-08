@@ -1,7 +1,19 @@
-<h1>Users</h1>
+<!-- Changes the image once this has loaded -->
+<!-- Added more for testing purposes than practical reasons -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".main").css(
+    "background-image", "url('https://images.unsplash.com/photo-1539213492139-7b268eb93c82?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d648ff5e44746dc58e4e5b12a26fb204&auto=format&fit=crop&w=1600&q=80')"
+  )
+})
+</script>
+
+<div class="main">
+
+<h1 class="pg-hd">Users</h1>
 
 <% @users.each do |user| %>
-<div style="border: solid black 3px; margin-bottom: 10px;">
+<div class="in-box" style="margin-bottom: 10px;">
   <h3><%= user.name %></h3>
   <p>Bio: <%= user.bio %></p>
   <% if user.stories.count > 0 %>
@@ -10,8 +22,12 @@
 
     <p>Stories:</p>
     <% user.stories.each do |s| %>
-      <p><%= link_to s.title, user_story_path(user, s) %></p>
+      <p><%= link_to s.title, user_story_path(user, s), class: "link-to" %></p>
     <% end %>
   <% end %>
   </div>
 <% end %>
+
+<br> <p style="color:white; display: inline-block; background-color:black; clear: both;">Background Photo by Paul Gilmore | Unsplash</p>
+
+</div>

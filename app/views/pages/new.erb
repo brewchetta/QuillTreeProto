@@ -1,3 +1,7 @@
-<h2>Write a page for your story</h2>
+<% if @story.pages.count > 0 %>
+  <p>Page #<%= @story.pages.count + 1 %></p>
+<% else %>
+  <p>Welcome to the first page of your story!</p>
+<% end %>
 
-<%= render "form" %>
+<%= render "form", url: user_story_pages_path(@user, @story) %>

@@ -21,6 +21,8 @@ class StoriesController < ApplicationController
   end
 
   def show
+    @bg = @story.background
+    @first_page = @story.pages.find_by(page_number: 1)
   end
 
   def edit
@@ -49,18 +51,19 @@ class StoriesController < ApplicationController
     redirect_to user_path(@user)
   end
 
+# ----------privacy please! --------#
   private
 
   def find_story
     @story = Story.find_by(id: params[:id])
   end
 
-  def story_params
-    params.require(:story).permit(:title, :synopsis, :user_id)
-  end
-
   def find_user
     @user = User.find_by(id: params[:user_id])
+  end
+
+  def story_params
+    params.require(:story).permit(:title, :synopsis, :user_id, :background)
   end
 
 end

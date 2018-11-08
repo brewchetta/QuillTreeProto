@@ -5,12 +5,13 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
 <%= yield %>
 
-<footer>Back to <%= link_to "Writers", users_path %></footer>
+<footer style="background:#3e3263; color:white; padding:0; min-height: 50px;">Back to <%= link_to "Writers", users_path, class:"link-to" %></footer>
 
 </body>
 </html>

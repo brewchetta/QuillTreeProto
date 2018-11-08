@@ -1,0 +1,37 @@
+
+<!-- This will change the background to whatever you choose -->
+
+<script type="text/javascript">
+// Ooooh sexy jQuery :D
+$(document).ready(function(){
+
+  var bg = `\"${$('.bg-data').data('bground')}\"`;
+
+  $(".main").css(
+    "background-image", `url(${bg})`
+  );
+
+  $(".main").css("background-size", "cover")
+});
+
+</script>
+
+<!-- Main Page Div -->
+<div class="main">
+
+<!-- invisible div that stores ruby info for javascript -->
+<%= content_tag :div, class: "bg-data", data: {bground: @bg} do %>
+<% end %>
+
+<!-- Links to story and user -->
+<p><%= link_to @story.title, user_story_path(@user, @story) %> by <%= link_to @user.name, user_path(@user) %></p>
+
+<!-- The content -->
+<p>Content: <%= @page.content %><br>
+Background URL: <%= @page.background %><br>
+Page # <%= @page.page_number %></p> <br>
+
+<!-- Edit -->
+<p><%= link_to "edit this page", edit_user_story_page_path(@user, @story, @page) %></p><br>
+
+</div>

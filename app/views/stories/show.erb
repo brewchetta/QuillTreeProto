@@ -1,11 +1,50 @@
+<!-- This will change the background to whatever you choose -->
+
+<script type="text/javascript">
+// Ooooh sexy jQuery :D
+$(document).ready(function(){
+
+  var bg = `\"${$('.bg-data').data('bground')}\"`;
+
+  $(".main").css(
+    "background-image", `url(${bg})`
+  );
+
+  $(".main").css("background-size", "cover")
+});
+
+</script>
+
+<!-- invisible div that stores ruby info for javascript -->
+
+<div class="main">
+
+<%= content_tag :div, class: "bg-data", data: {bground: @bg} do %>
+<% end %>
+
+<!-- and the rest -->
+
+
+<div class="main">
+
 <h2><%= @story.title %></h2>
 
 <p>by <%= link_to @story.user.name, @story.user %></p>
 
 <p><%= @story.synopsis %></p>
 
-<p>TODO -- Add pages</p>
+<!-- Link to the first page -->
+<% if @first_page %>
+  <p><%= link_to "Start reading!", user_story_page_path(@user, @story, @first_page) %></p>
+<% end %>
 
+<!-- Link to pages index -->
+<p><%= link_to "Pages Index", user_story_pages_path(@user, @story) %></p>
+
+<!-- Edit -->
 <p style="font-size: 0.7em"><%= link_to "Edit", edit_user_story_path(@story.user, @story) %></p>
 
+<!-- Delete -->
 <p style="display: inline-block; border: solid red 2px; padding: 5px;"><%= link_to "Delete", user_story_path(@story.user, @story), method: :delete, data: { confirm: "Do you really want to burn this book?" } %></p><br>
+
+</div>

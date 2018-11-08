@@ -1,0 +1,13 @@
+<p><%= @story.title %> by <%= @user.name %></p>
+
+<% if @pages.count > 0 %>
+
+  <% @pages.each do |page| %>
+    <p><%= link_to page.page_number, user_story_page_path(@user, @story, page) %></p>
+  <% end %>
+
+<% else %>
+
+  <p>There are no pages yet!</p>
+
+<% end %>
