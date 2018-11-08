@@ -7,5 +7,7 @@
 <p style="border-top: solid black 2px; border-bottom: solid black 1px; display:inline-block;">Stories</p><br>
 
 <% @user.stories.each do |s| %>
-<p style="display: inline-block"> <%= link_to s.title, s %> </p>
-<% end %>
+<p style="display: inline-block"> <%= link_to s.title, user_story_path(@user, s) %> </p>
+<% end %><br>
+
+<p><%= link_to "New Story", new_user_story_path(@user) %></p>

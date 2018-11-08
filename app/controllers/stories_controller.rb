@@ -1,23 +1,22 @@
 class StoriesController < ApplicationController
   before_action :find_story, only: [:show, :edit, :update, :destroy]
-
-
-  def index
-    @stories = Story.all
-  end
+  before_action :find_user
 
   def new
+    # @user = User.find_by(id: params[:user_id])
     @story = Story.new
+    @story.user_id = @user.id
   end
 
   def create
     @story = Story.create(story_params)
     if @story.valid?
-      redirect_to @story
+      @user.stories << @story
+      redirect_to user_story_path(@user, @story)
     else
       @errors = @story.errors.full_messages
       flash[:errors] = @errors
-      redirect_to new_story_path
+      redirect_to new_user_story_path(@user)
     end
   end
 
@@ -30,22 +29,24 @@ class StoriesController < ApplicationController
   def update
     @story.update(story_params)
     if @story.valid?
-      redirect_to @story
+      redirect_to user_story_path(@user, @story)
     else
       @errors = @story.errors.full_messages
       flash[:errors] = @errors
-      redirect_to edit_story_path
+      redirect_to edit_user_story_path(@user, @story)
     end
   end
 
   def destroy
-    # @story.pages.each do |p|
-    #   p.destroy
-    # end
+    if @story.pages
+      @story.pages.each do |p|
+        p.destroy
+      end
+    end
 
     @story.destroy
 
-    redirect_to stories_path
+    redirect_to user_path(@user)
   end
 
   private
@@ -56,6 +57,10 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:title, :synopsis, :user_id)
+  end
+
+  def find_user
+    @user = User.find_by(id: params[:user_id])
   end
 
 end

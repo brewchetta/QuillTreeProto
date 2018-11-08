@@ -2,6 +2,7 @@ class Story < ActiveRecord::Base
   has_many :pages
   belongs_to :user
   validates :title, presence: true
+  validates :title, uniqueness: true
   validate :max_synopsis_size
 
   def max_synopsis_size

@@ -1,8 +1,0 @@
-<h1>Stories Index</h1>
-<p style="border-top: solid black 2px; border-bottom: solid black 4px"><%= pluralize(@stories.count, "story") %> written and counting!</p>
-
-<% @stories.each do |story| %>
-  <p><%= link_to story.title, "/stories/#{story.id}" %> by <%= link_to story.user.name, story.user %></p>
-<% end %>
-
-<p style="border-top: solid black 2px; border-bottom: solid black 4px"><%= link_to "Begin a new story", new_story_path %></p>

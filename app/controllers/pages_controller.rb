@@ -11,6 +11,15 @@ class PagesController < ApplicationController
   end
 
   def create
+    @page = Page.create(page_params)
+    if @page.valid?
+      set_page_num(@page)
+      redirect_to @page
+    else
+      @errors = @page.errors.full_messages
+      flash[:errors] = @errors
+      redirect_to new_page_path
+    end
   end
 
   def show
@@ -35,6 +44,12 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:background, :content, :story_id)
+  end
+
+  def set_page_num(pg)
+    pg.page_number = pg.story.pages.count
+    puts "Page num has been set!\n-----------\n"
+    pg.save
   end
 
 end
